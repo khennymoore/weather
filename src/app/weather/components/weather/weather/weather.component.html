@@ -1,0 +1,32 @@
+<section class="weather-section">
+    <div class="weather-card" *ngIf="selectedCity">
+        <div class="select-city">
+            <label for="city-select">Select City:</label>
+            <select 
+                id="city-select" 
+                name="city-select" 
+                class="city-select" 
+                [(ngModel)]="selectedCity" 
+                (change)="onCityChange()">
+                <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
+        </div>
+        <div class="weather-content">
+            <h1 class="city-name">
+                {{ selectedCity }}
+            </h1>
+            <div class="weather-info"  *ngIf="selectedWeather">
+                <img 
+                    src="https://openweathermap.org/img/wn/{{ selectedWeather?.weather[0].icon }}@2x.png" 
+                    alt="weather-icon" 
+                    class="weather-icon">
+                <div class="temperature">
+                    Temperature: {{ selectedWeather.main?.temp }}°C
+                </div>
+                <div class="wind-speed">
+                    Wind: {{ selectedWeather.wind?.speed }} m/s
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
